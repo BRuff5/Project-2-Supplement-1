@@ -11,8 +11,8 @@ public class main {
     /**
      * Constructor to create a new node.
      *
-     * @param id   Unique ID.
-     * @param data Data to store.
+     * id: Unique ID.
+     * data: Data to store.
      */
     public main(int id, int data) {
         this.id = id;
@@ -26,15 +26,14 @@ public class main {
      * If value is smaller than the current data, its inserted into the left child.
      * If bigger inserted into the right child.
      *
-     * @param newData The value to insert.
+     * newData: The value to insert.
      */
-
     public void insert(int newData) {
         if (newData < this.data) {
             // Insert into the left 
             if (this.left == null) {
                 // Create a new node if left child does not exist
-                this.left = new main(this.id * 2, newData); 
+                this.left = new main(this.id * 2, newData); // Example for unique ID generation
             } else {
                 this.left.insert(newData);
             }
@@ -42,10 +41,39 @@ public class main {
             // Insert into the right child
             if (this.right == null) {
                 // Create a new node if right child does not exist
-                this.right = new main(this.id * 2 + 1, newData); 
+                this.right = new main(this.id * 2 + 1, newData);
             } else {
                 this.right.insert(newData);
             }
         }
     }
+
+    /**
+     * Dumps the current node and its children.
+     * Args:
+     *  level: The depth of the current node in the tree (used for indentation).
+     * Returns:
+     *  A string representation of the tree structure.
+     */
+
+    public String dump(int level) {
+        StringBuilder sb = new StringBuilder();
+        // Add tab indentation based on the level
+        for (int i = 0; i < level; i++) {
+            sb.append("\t");
+        }
+        // Appends info
+        sb.append("Node ID: ").append(this.id).append(", Data: ").append(this.data).append("\n");
+
+        // Print left and right children
+        if (this.left != null) {
+            sb.append(this.left.dump(level + 1));
+        }
+        if (this.right != null) {
+            sb.append(this.right.dump(level + 1));
+        }
+
+        return sb.toString();
+    }
 }
+
