@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "main.java"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
